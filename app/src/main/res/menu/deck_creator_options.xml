@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/save_deck"
+        android:icon="@drawable/save_deck"
+        android:title="@string/save_deck"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/remove_card"
+        android:icon="@drawable/delete_card"
+        android:title="@string/remove_card"
+        app:showAsAction="ifRoom" />
+</menu>

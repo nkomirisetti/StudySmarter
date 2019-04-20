@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">StudySmarter</string>
+    <string name="add_deck">Add Deck</string>
+    <string name="calendar_view">Calendar View</string>
+    <string name="delete_decks">Delete Decks</string>
+    <string name="title_activity_deck_creator">DeckCreator</string>
+    <string name="sort_by">Sort By</string>
+    <string name="save_deck">Save Deck</string>
+    <string name="remove_card">Remove Card</string>
+    <string name="term">Term</string>
+    <string name="definition">Definition</string>
+    <string name="save_card">Save Card</string>
+</resources>
