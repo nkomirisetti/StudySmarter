@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.studysmarter.R;
-import com.example.studysmarter.dbLayer.dataBuilder.BuildCards;
+import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,9 @@ public class CardAdder extends AppCompatActivity {
 
     }
 
-    public void saveCards(){
-        BuildCards.createCards()
+    public void saveCards() {
+        DataAccessLayerHelper.insertCards(this, currentDeck, term, definition);
+        term = new ArrayList<>();
+        definition = new ArrayList<>();
     }
 }
