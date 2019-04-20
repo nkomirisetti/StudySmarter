@@ -1,5 +1,7 @@
 package com.example.studysmarter.screens;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.studysmarter.R;
 import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
+import com.example.studysmarter.dbLayer.tables.Cards;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +67,29 @@ public class CardAdder extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int choice) {
+                switch (choice) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        saveCards();
+                        CardAdder.super.onBackPressed();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if (term.size() > 0) {
+            builder.setMessage("Is that all the cards you want to add for now?")
+                    .setPositiveButton("yup", dialogClickListener)
+                    .setNegativeButton("nope", dialogClickListener).show();
+        } else {
+            CardAdder.super.onBackPressed();
+        }
     }
 
     public void saveCards() {

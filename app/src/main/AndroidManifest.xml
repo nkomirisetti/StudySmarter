@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".screens.CardAdder"></activity>
+        <activity android:name=".screens.DeckCreator"></activity>
+        <activity android:name=".screens.CardAdder" />
         <activity
-            android:name=".screens.DeckCreator"
+            android:name=".screens.DeckDesigner"
             android:label="@string/title_activity_deck_creator"
             android:theme="@style/NoActionBar" />
         <activity android:name=".MainActivity">

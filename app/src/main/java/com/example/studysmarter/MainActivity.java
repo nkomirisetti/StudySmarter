@@ -15,7 +15,7 @@ import android.widget.SimpleAdapter;
 import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Decks;
-import com.example.studysmarter.screens.DeckCreator;
+import com.example.studysmarter.screens.DeckDesigner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,9 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_deck:
-                Intent newDeck = new Intent(this, DeckCreator.class);
-                newDeck.putExtra("DECK_ID", -1);
-                startActivity(newDeck);
+                openDeckCreator();
                 return true;
             case R.id.cal_view:
                 Log.i("wassup", "cal pushed");
@@ -61,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void openDeckCreator() {
+
+
+        Intent newDeck = new Intent(this, DeckDesigner.class);
+        newDeck.putExtra("DECK_ID", -1);
+        startActivity(newDeck);
+
     }
 
     private void initializeToolbar(){
