@@ -41,6 +41,6 @@ public interface CardDAO {
     @Query("SELECT * FROM cards WHERE deckID == :deckID AND cardID == :cardID")
     Cards getSpecificCard(int deckID, int cardID);
 
-    @Query("SELECT MAX(cardID) FROM cards WHERE deckID == :deckID AND ")
+    @Query("SELECT MAX(cardID) FROM cards WHERE deckID == :deckID")
     int getHighestCardID(int deckID);
 }

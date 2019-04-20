@@ -7,8 +7,6 @@ import java.util.List;
 
 public class BuildCards {
     public static List<Cards> createCards(int deckID, List<String> terms, List<String> definitions, int startIndex){
-
-
         List<Cards> cards = new ArrayList<>();
         for (int i = 0; i < terms.size(); i++){
             Cards c = new Cards();

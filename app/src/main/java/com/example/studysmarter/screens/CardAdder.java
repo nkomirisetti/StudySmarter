@@ -28,8 +28,8 @@ public class CardAdder extends AppCompatActivity {
     }
 
     public void addCard(View view) {
-        EditText term = findViewById(R.id.termEntry);
-        EditText def = findViewById(R.id.definitionEntry);
+        EditText term = findViewById(R.id.term_entry);
+        EditText def = findViewById(R.id.definition_entry);
 
         String newTerm = term.getText().toString();
         String newDef = def.getText().toString();

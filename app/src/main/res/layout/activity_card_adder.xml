@@ -7,7 +7,7 @@
     tools:context=".screens.CardAdder" >
 
     <EditText
-        android:id="@+id/termEntry"
+        android:id="@+id/term_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="35sp"
@@ -18,7 +18,7 @@
         />
 
     <EditText
-        android:id="@+id/definitionEntry"
+        android:id="@+id/definition_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
