@@ -54,7 +54,6 @@ public class DeckDesigner extends AppCompatActivity {
         Intent newDeck = new Intent(this, CardAdder.class);
         newDeck.putExtra("DECK_ID", currentDeckId);
         startActivity(newDeck);
-
     }
 
     private void initializeCardView() {
@@ -62,6 +61,7 @@ public class DeckDesigner extends AppCompatActivity {
         if (currentDeckId != -1) {
             populateCards();
         } else {
+            // maybe this shouldn't run?
             currentDeckId = cd.getDeckDAO().getHighestDeckID() + 1;
         }
     }

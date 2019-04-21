@@ -15,6 +15,7 @@ import android.widget.SimpleAdapter;
 import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Decks;
+import com.example.studysmarter.screens.DeckCreator;
 import com.example.studysmarter.screens.DeckDesigner;
 
 import java.util.ArrayList;
@@ -62,12 +63,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openDeckCreator() {
-
-
-        Intent newDeck = new Intent(this, DeckDesigner.class);
-        newDeck.putExtra("DECK_ID", -1);
+        Intent newDeck = new Intent(this, DeckCreator.class);
         startActivity(newDeck);
-
     }
 
     private void initializeToolbar(){

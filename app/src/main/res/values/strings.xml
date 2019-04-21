@@ -10,4 +10,7 @@
     <string name="term">Term</string>
     <string name="definition">Definition</string>
     <string name="save_card">Save Card</string>
+    <string name="button">Button</string>
+    <string name="due_date">Due Date</string>
+    <string name="deck_title">Deck Title</string>
 </resources>
