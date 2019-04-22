@@ -18,7 +18,6 @@ import java.util.List;
 public class CardAdder extends AppCompatActivity {
 
     int currentDeck;
-    int currentStartIndex;
     List<String> term, definition;
 
     @Override

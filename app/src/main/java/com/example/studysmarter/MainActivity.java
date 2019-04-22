@@ -16,7 +16,6 @@ import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Decks;
 import com.example.studysmarter.screens.DeckCreator;
-import com.example.studysmarter.screens.DeckDesigner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         initializeToolbar();
         initializeListView();
     }
-
 
 
     @Override
@@ -67,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(newDeck);
     }
 
-    private void initializeToolbar(){
+    private void initializeToolbar() {
         Toolbar homeToolbar = findViewById(R.id.home_toolbar);
         setSupportActionBar(homeToolbar);
     }
 
-    private void initializeListView(){
+    private void initializeListView() {
         ListView lv = findViewById(R.id.decks_list);
         String[] from = {"deck_title", "last_accessed_date", "percent"};
         int[] to = {R.id.deck_title, R.id.last_accessed_date, R.id.percent};
@@ -98,5 +96,11 @@ public class MainActivity extends AppCompatActivity {
 
         simpleAdapter.setViewBinder(binder);
         lv.setAdapter(simpleAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initializeListView();
     }
 }

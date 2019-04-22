@@ -70,7 +70,6 @@ public class DeckCreator extends AppCompatActivity {
 
         // TODO: generate code for 3 midpoints and insert them into the proficiency table
 
-
         cd.getDeckDAO().insertDeck(newDeck);
 
         Intent openDD = new Intent(this, DeckDesigner.class);

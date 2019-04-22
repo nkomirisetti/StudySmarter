@@ -45,7 +45,7 @@ public class DeckDesigner extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                  createCards();
+                createCards();
             }
         });
     }
@@ -118,5 +118,11 @@ public class DeckDesigner extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        populateCards();
     }
 }
