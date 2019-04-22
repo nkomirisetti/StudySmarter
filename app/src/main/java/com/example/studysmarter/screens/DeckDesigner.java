@@ -80,7 +80,6 @@ public class DeckDesigner extends AppCompatActivity {
 
         List<HashMap<String, String>> mappingList = new ArrayList<>();
 
-
         for (Cards card : cardDAO.getFullCards(currentDeckId)) {
             HashMap<String, String> innerMap = new HashMap<>();
             innerMap.put("card_front", card.term);
