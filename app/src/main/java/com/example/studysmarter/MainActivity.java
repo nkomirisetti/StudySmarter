@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,7 +16,6 @@ import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Decks;
 import com.example.studysmarter.screens.DeckCreator;
-import com.example.studysmarter.screens.DeckDesigner;
 import com.example.studysmarter.screens.StudyView;
 
 import java.util.ArrayList;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 openStudyView(10);
                 return true;
             case R.id.delete_deck:
-                Log.i("wassup", "del pushed");
+                // TODO add delete deck view
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -65,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openStudyView(int deckID) {
-        Intent newDeck = new Intent(this, StudyView.class);
-        newDeck.putExtra("DECK_ID", cd.getDeckDAO().getHighestDeckID());
-        startActivity(newDeck);
+        Intent newStudy = new Intent(this, StudyView.class);
+        newStudy.putExtra("DECK_ID", deckID);
+        startActivity(newStudy);
     }
 
     private void openDeckCreator() {
@@ -86,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
         int[] to = {R.id.deck_title, R.id.last_accessed_date, R.id.percent};
 
         List<HashMap<String, String>> mappingList = new ArrayList<>();
-
 
         for (Decks deck : DataAccessLayerHelper.getAllDecks(cd)) {
             HashMap<String, String> innerMap = new HashMap<>();
@@ -107,17 +104,13 @@ public class MainActivity extends AppCompatActivity {
         simpleAdapter.setViewBinder(binder);
         lv.setAdapter(simpleAdapter);
 
-
-        lv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-
-            public void onItemSelected(AdapterView parentView, View childView, int position, long id)
-            {
+        AdapterView.OnItemClickListener messageClickedHandler = new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
                 openStudyView(getDeckID(position));
             }
-        });
+        };
+
+        lv.setOnItemClickListener(messageClickedHandler);
     }
 
     @Override

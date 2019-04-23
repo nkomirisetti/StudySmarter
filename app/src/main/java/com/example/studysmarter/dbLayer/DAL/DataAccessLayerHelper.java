@@ -18,7 +18,7 @@ public class DataAccessLayerHelper {
                 .build();
     }
 
-    public static void insertCards(CardsDatabase cd, int deckID, List<String> terms, List<String> definitions) {
+    static void insertCards(CardsDatabase cd, int deckID, List<String> terms, List<String> definitions) {
         int startingIndex = cd.getCardDAO().getHighestCardID(deckID);
         List<Cards> cardsList = BuildCards.createCards(deckID, terms, definitions, startingIndex);
         for (Cards card : cardsList) {
@@ -35,5 +35,13 @@ public class DataAccessLayerHelper {
     }
 
 
+    public static List<Cards> getCards(Context appContext, int deckID) {
+        CardsDatabase cd = buildDatabaseConnection(appContext);
+        return getCards(cd, deckID);
+    }
+
+    static List<Cards> getCards(CardsDatabase cd, int deckID) {
+        return cd.getCardDAO().getFullCards(deckID);
+    }
 }
 
