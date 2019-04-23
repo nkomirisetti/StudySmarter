@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.studysmarter.R;
 import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
@@ -27,6 +28,11 @@ public class CardAdder extends AppCompatActivity {
 
         term = new ArrayList<>();
         definition = new ArrayList<>();
+
+        currentDeck = getIntent().getIntExtra("DECK_ID", -1);
+        if (currentDeck == -1) {
+            // TODO add fail logic code, possibly dialog window
+        }
     }
 
     public void addCard(View view) {

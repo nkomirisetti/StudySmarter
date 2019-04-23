@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -76,7 +77,7 @@ public class DeckDesigner extends AppCompatActivity {
 
         ListView lv = findViewById(R.id.cards_list);
         String[] from = {"card_front", "card_back"};
-        int[] to = {R.id.deck_title, R.id.last_accessed_date};
+        int[] to = {R.id.card_front, R.id.card_back};
 
         List<HashMap<String, String>> mappingList = new ArrayList<>();
 
@@ -87,7 +88,7 @@ public class DeckDesigner extends AppCompatActivity {
             mappingList.add(innerMap);
         }
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), mappingList, R.layout.card_item, from, to);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(this, mappingList, R.layout.card_item, from, to);
         SimpleAdapter.ViewBinder binder = new SimpleAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Object data, String textRepresentation) {
