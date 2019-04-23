@@ -16,6 +16,8 @@ import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Decks;
 import com.example.studysmarter.screens.DeckCreator;
+import com.example.studysmarter.screens.StudyView;
+import com.wajahatkarim3.easyflipview.EasyFlipView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         cd = DataAccessLayerHelper.buildDatabaseConnection(this);
         initializeToolbar();
         initializeListView();
+
     }
 
 
@@ -50,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 openDeckCreator();
                 return true;
             case R.id.cal_view:
-                Log.i("wassup", "cal pushed");
+                // TODO fix later with real method
+                openStudyView();
                 return true;
             case R.id.delete_deck:
                 Log.i("wassup", "del pushed");
@@ -58,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void openStudyView() {
+        Intent newDeck = new Intent(this, StudyView.class);
+        startActivity(newDeck);
     }
 
     private void openDeckCreator() {
