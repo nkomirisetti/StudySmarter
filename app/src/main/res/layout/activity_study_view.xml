@@ -10,32 +10,17 @@
         android:id="@+id/easyFlipView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:autoFlipBack="false"
+        app:autoFlipBackTime="1000"
         app:flipDuration="500"
         app:flipEnabled="true"
         app:flipFrom="back"
         app:flipOnTouch="true"
-        app:flipType="vertical"
-        app:autoFlipBack="false"
-        app:autoFlipBackTime="1000"
-        >
+        app:flipType="vertical">
 
-        <ImageView
-            android:id="@+id/imgBackCard"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:gravity="center"
-            android:src="@drawable/card_back"
-            android:contentDescription="TODO"
-            />
+        <include layout="@layout/card_front" />
 
-        <ImageView
-            android:id="@+id/imgFrontCard"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:gravity="center"
-            android:src="@drawable/card_front"
-            android:contentDescription="TODO"
-            />
+        <include layout="@layout/card_back" />
 
     </com.wajahatkarim3.easyflipview.EasyFlipView>
 </LinearLayout>
