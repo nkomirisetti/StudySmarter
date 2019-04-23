@@ -2,12 +2,14 @@ package com.example.studysmarter.screens;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.studysmarter.MainActivity;
 import com.example.studysmarter.R;
 import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 
@@ -29,8 +31,26 @@ public class CardAdder extends AppCompatActivity {
 
         currentDeck = getIntent().getIntExtra("DECK_ID", -1);
         if (currentDeck == -1) {
-            // TODO add fail logic code, possibly dialog window
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int choice) {
+                    switch (choice) {
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            goHome();
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Some critical error happened, returning to the home screen")
+                    .setNegativeButton("sad", dialogClickListener).show();
         }
+    }
+
+    public void goHome() {
+        Intent newDeck = new Intent(this, MainActivity.class);
+        startActivity(newDeck);
     }
 
     public void addCard(View view) {

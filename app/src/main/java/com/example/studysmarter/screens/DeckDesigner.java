@@ -1,6 +1,7 @@
 package com.example.studysmarter.screens;
 
-import android.arch.persistence.room.Room;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.example.studysmarter.MainActivity;
 import com.example.studysmarter.R;
 import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 import com.example.studysmarter.dbLayer.DAO.CardDAO;
@@ -67,11 +69,6 @@ public class DeckDesigner extends AppCompatActivity {
     }
 
     private void populateCards() {
-        CardsDatabase cd = Room.databaseBuilder(this, CardsDatabase.class, "db-cards")
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build();
-
         CardDAO cardDAO = cd.getCardDAO();
 
         ListView lv = findViewById(R.id.cards_list);
@@ -124,5 +121,30 @@ public class DeckDesigner extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         populateCards();
+    }
+
+    @Override
+    public void onBackPressed() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int choice) {
+                switch (choice) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if (cd.getCardDAO().getFullCards(currentDeckId).size() == 0) {
+            builder.setMessage("You can't create an empty deck")
+                    .setPositiveButton("o no", dialogClickListener).show();
+        } else {
+            Intent newDeck = new Intent(this, MainActivity.class);
+            startActivity(newDeck);
+        }
     }
 }
