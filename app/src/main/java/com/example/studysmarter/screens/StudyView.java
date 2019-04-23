@@ -17,5 +17,6 @@ public class StudyView extends AppCompatActivity {
         easyFlipView.setFlipDuration(1000);
         easyFlipView.setFlipEnabled(true);
 
+
     }
 }

@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".screens.StudyView"></activity>
+        <activity
+            android:name=".screens.StudyStagingArea"
+            android:label="@string/title_activity_study_staging_area"
+            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".screens.StudyView" />
         <activity android:name=".screens.DeckCreator" />
         <activity android:name=".screens.CardAdder" />
         <activity

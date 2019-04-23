@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -16,6 +17,7 @@ import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Decks;
 import com.example.studysmarter.screens.DeckCreator;
+import com.example.studysmarter.screens.DeckDesigner;
 import com.example.studysmarter.screens.StudyView;
 
 import java.util.ArrayList;
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         cd = DataAccessLayerHelper.buildDatabaseConnection(this);
         initializeToolbar();
         initializeListView();
-
     }
 
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.cal_view:
                 // TODO fix later with real method
-                openStudyView();
+                openStudyView(10);
                 return true;
             case R.id.delete_deck:
                 Log.i("wassup", "del pushed");
@@ -63,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void openStudyView() {
+    private void openStudyView(int deckID) {
         Intent newDeck = new Intent(this, StudyView.class);
+        newDeck.putExtra("DECK_ID", cd.getDeckDAO().getHighestDeckID());
         startActivity(newDeck);
     }
 
@@ -104,11 +106,27 @@ public class MainActivity extends AppCompatActivity {
 
         simpleAdapter.setViewBinder(binder);
         lv.setAdapter(simpleAdapter);
+
+
+        lv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+            public void onItemSelected(AdapterView parentView, View childView, int position, long id)
+            {
+                openStudyView(getDeckID(position));
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
         initializeListView();
+    }
+
+    int getDeckID(int position) {
+        return (DataAccessLayerHelper.getAllDecks(cd).get(position)).deckID;
     }
 }
