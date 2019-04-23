@@ -5,9 +5,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
-import android.widget.LinearLayout;
 
-import com.example.studysmarter.dbLayer.tables.Decks;
 import com.example.studysmarter.dbLayer.tables.Proficiency;
 
 import java.util.List;

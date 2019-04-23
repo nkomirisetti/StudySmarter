@@ -17,7 +17,6 @@ import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Decks;
 import com.example.studysmarter.screens.DeckCreator;
 import com.example.studysmarter.screens.StudyView;
-import com.wajahatkarim3.easyflipview.EasyFlipView;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -7,11 +7,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.studysmarter.R;
 import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
-import com.example.studysmarter.dbLayer.tables.Cards;
 
 import java.util.ArrayList;
 import java.util.List;
