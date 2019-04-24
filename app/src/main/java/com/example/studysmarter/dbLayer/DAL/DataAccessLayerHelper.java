@@ -40,7 +40,7 @@ public class DataAccessLayerHelper {
         return getCards(cd, deckID);
     }
 
-    static List<Cards> getCards(CardsDatabase cd, int deckID) {
+    public static List<Cards> getCards(CardsDatabase cd, int deckID) {
         return cd.getCardDAO().getFullCards(deckID);
     }
 }

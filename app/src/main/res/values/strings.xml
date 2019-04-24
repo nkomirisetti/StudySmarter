@@ -14,4 +14,5 @@
     <string name="due_date">Due Date</string>
     <string name="deck_title">Deck Title</string>
     <string name="title_activity_study_staging_area">StudyStagingArea</string>
+    <string name="return_to_home">Return to Home</string>
 </resources>
