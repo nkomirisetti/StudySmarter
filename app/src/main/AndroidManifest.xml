@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".screens.DeleteDecks"
+            android:label="@string/title_activity_delete_decks"
+            android:theme="@style/NoActionBar"></activity>
+        <activity
             android:name=".screens.CalendarView"
             android:label="@string/title_activity_calendar_view"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar" />
         <activity android:name=".screens.StudyReview" />
         <activity
             android:name=".screens.StudyStagingArea"

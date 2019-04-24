@@ -16,4 +16,5 @@
     <string name="title_activity_study_staging_area">StudyStagingArea</string>
     <string name="return_to_home">Return to Home</string>
     <string name="title_activity_calendar_view">CalendarView</string>
+    <string name="title_activity_delete_decks">DeleteDecks</string>
 </resources>
