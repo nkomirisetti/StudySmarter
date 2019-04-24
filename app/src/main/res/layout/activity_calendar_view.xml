@@ -20,6 +20,10 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_calendar_view" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
 
 </android.support.design.widget.CoordinatorLayout>
