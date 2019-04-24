@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         initializeListView();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -51,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 openDeckCreator();
                 return true;
             case R.id.cal_view:
-                // TODO fix later with real method
-                openStudyView(10);
+                // TODO add calendar view screen
                 return true;
             case R.id.delete_deck:
                 // TODO add delete deck view

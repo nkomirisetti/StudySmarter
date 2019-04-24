@@ -2,6 +2,8 @@ package com.example.studysmarter.screens;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.studysmarter.R;
@@ -18,6 +20,7 @@ public class StudyView extends AppCompatActivity {
     int deckID;
     List<Cards> cardsList;
     int currentCard;
+    int iKnowCount, iDontKnowCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +36,35 @@ public class StudyView extends AppCompatActivity {
         cardsList = DataAccessLayerHelper.getCards(this, deckID);
         currentCard = 0;
 
+        iKnowCount = 0;
+        iDontKnowCount = 0;
+
+        Button iKnow = findViewById(R.id.btn_i_know);
+        iKnow.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                iKnowClicked();
+            }
+        });
+
+        Button iDontKnow = findViewById(R.id.btn_i_dont_know);
+        iDontKnow.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                iDontKnowClicked();
+            }
+        });
+
         refresh();
     }
 
     void refresh(){
+        if (currentCard == cardsList.size()){
+            // TODO summary screen window call
+            // TODO save progress into database
+            return;
+        }
+
         TextView indexLabel = findViewById(R.id.card_view_front_index);
         TextView termLabel = findViewById(R.id.card_view_front_name);
 
@@ -48,5 +76,17 @@ public class StudyView extends AppCompatActivity {
 
         termLabel.setText(cardsList.get(currentCard).term);
         defLabel.setText(cardsList.get(currentCard).definition);
+    }
+
+    void iKnowClicked(){
+        iKnowCount++;
+        currentCard++;
+        refresh();
+    }
+
+    void iDontKnowClicked() {
+        iDontKnowCount++;
+        currentCard++;
+        refresh();
     }
 }
