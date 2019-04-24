@@ -1,5 +1,6 @@
 package com.example.studysmarter.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,10 +10,13 @@ import android.widget.TextView;
 
 import com.example.studysmarter.R;
 import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
+import com.example.studysmarter.dbLayer.calculations.ProficiencyCalculator;
 import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Cards;
+import com.example.studysmarter.dbLayer.tables.Decks;
 import com.wajahatkarim3.easyflipview.EasyFlipView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class StudyView extends AppCompatActivity {
@@ -82,11 +86,22 @@ public class StudyView extends AppCompatActivity {
 
             long secondsPerCard = (stopTime - startTime) / (cardsList.size() * 1000000000);
             Log.i("You took ", secondsPerCard + " and you had " + iKnowCount + " cards you knew and " + iDontKnowCount + " cards you didn't know");
-            double rawProficiency = (double)iKnowCount / (iKnowCount + iDontKnowCount);
-            double calcProficiency;
+            double rawProficiency = (double) iKnowCount / (iKnowCount + iDontKnowCount);
 
-            // TODO summary screen window call
-            // TODO save progress into database
+            Decks currentDeck = cd.getDeckDAO().findDeckWithID(deckID).get(0);
+            currentDeck.proficiency = ProficiencyCalculator.CalculateProficiency(rawProficiency, secondsPerCard);
+            cd.getDeckDAO().updateDeck(currentDeck);
+
+            DecimalFormat df2 = new DecimalFormat("#.##");
+
+            Intent studyReview = new Intent(this, StudyReview.class);
+            studyReview.putExtra("DECK_ID", deckID);
+            studyReview.putExtra("TIME_ELAPSED", df2.format((stopTime - startTime) / 1000000000));
+            studyReview.putExtra("TIME_PER_CARD", df2.format(secondsPerCard));
+            studyReview.putExtra("YES", df2.format(iKnowCount));
+            studyReview.putExtra("PROF", df2.format(currentDeck.proficiency));
+
+            startActivity(studyReview);
             return;
         }
 

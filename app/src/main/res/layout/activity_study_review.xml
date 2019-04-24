@@ -21,6 +21,7 @@
         android:id="@+id/summary_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="20sp"
         android:text="TextView" />
 
     <Button
@@ -28,5 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/return_to_home"
+        android:onClick="returnToHome"
         android:layout_gravity="bottom" />
 </LinearLayout>

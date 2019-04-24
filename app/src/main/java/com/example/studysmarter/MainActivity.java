@@ -18,6 +18,7 @@ import com.example.studysmarter.dbLayer.tables.Decks;
 import com.example.studysmarter.screens.DeckCreator;
 import com.example.studysmarter.screens.StudyView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,13 +82,15 @@ public class MainActivity extends AppCompatActivity {
         String[] from = {"deck_title", "last_accessed_date", "percent"};
         int[] to = {R.id.deck_title, R.id.last_accessed_date, R.id.percent};
 
+        DecimalFormat df2 = new DecimalFormat("#.##");
+
         List<HashMap<String, String>> mappingList = new ArrayList<>();
 
         for (Decks deck : DataAccessLayerHelper.getAllDecks(cd)) {
             HashMap<String, String> innerMap = new HashMap<>();
             innerMap.put("deck_title", deck.name);
             innerMap.put("last_accessed_date", deck.lastOpened.toString());
-            innerMap.put("percent", Double.toString(deck.proficiency));
+            innerMap.put("percent", df2.format(deck.proficiency));
             mappingList.add(innerMap);
         }
 

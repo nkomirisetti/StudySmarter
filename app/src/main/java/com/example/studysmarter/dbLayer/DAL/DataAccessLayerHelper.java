@@ -7,7 +7,9 @@ import com.example.studysmarter.dbLayer.dataBuilder.BuildCards;
 import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Cards;
 import com.example.studysmarter.dbLayer.tables.Decks;
+import com.example.studysmarter.dbLayer.tables.Proficiency;
 
+import java.util.Date;
 import java.util.List;
 
 public class DataAccessLayerHelper {
@@ -34,7 +36,6 @@ public class DataAccessLayerHelper {
         return cd.getDeckDAO().getDecksByLastStudied();
     }
 
-
     public static List<Cards> getCards(Context appContext, int deckID) {
         CardsDatabase cd = buildDatabaseConnection(appContext);
         return getCards(cd, deckID);
@@ -42,6 +43,20 @@ public class DataAccessLayerHelper {
 
     public static List<Cards> getCards(CardsDatabase cd, int deckID) {
         return cd.getCardDAO().getFullCards(deckID);
+    }
+
+    public static void insertProficiencies(CardsDatabase cd, int deckID, Date[] dates) {
+        int[] profValues = {25, 50, 75};
+        Proficiency[] profs = new Proficiency[3];
+        for (int i = 0; i < 3; i++) {
+            Proficiency p = new Proficiency();
+            p.deadline = dates[i];
+            p.deckID = deckID;
+            p.stage = profValues[i];
+            p.stageID = i + 1;
+            profs[i] = p;
+        }
+        cd.getProficiencyDAO().insertProfs(profs);
     }
 }
 

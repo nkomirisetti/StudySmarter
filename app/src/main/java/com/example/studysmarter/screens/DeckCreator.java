@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -51,13 +52,13 @@ public class DeckCreator extends AppCompatActivity {
         EditText et = findViewById(R.id.deck_title_entry);
         DatePicker dp = findViewById(R.id.datePicker1);
         Calendar cal = Calendar.getInstance();
-        cal.set(dp.getYear(),dp.getMonth(),dp.getDayOfMonth());
+        cal.set(dp.getYear(), dp.getMonth(), dp.getDayOfMonth());
         Date newDate = cal.getTime();
         if (et.getText().toString().isEmpty()) {
             Snackbar.make(view, "The title is empty, you can't make a deck with an empty title", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return;
-        } else if (newDate.before(new Date())){
+        } else if (newDate.before(new Date())) {
             Snackbar.make(view, "You can't set the due date to something in the past...", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return;
@@ -68,9 +69,29 @@ public class DeckCreator extends AppCompatActivity {
 
         CardsDatabase cd = DataAccessLayerHelper.buildDatabaseConnection(this);
 
-        // TODO: generate code for 3 midpoints and insert them into the proficiency table
+        Date today = new Date();
+
+        Date checkPoint1 = new Date(
+                (newDate.getTime() - today.getTime()) / 4 +
+                        today.getTime()
+        );
+
+        Date checkPoint2 = new Date(
+                (newDate.getTime() - today.getTime()) / 2 +
+                        today.getTime()
+        );
+
+        Date checkPoint3 = new Date(
+                (newDate.getTime() - today.getTime()) * 3 / 4 +
+                        today.getTime()
+        );
+
+        Date[] dates = {checkPoint1, checkPoint2, checkPoint3};
 
         cd.getDeckDAO().insertDeck(newDeck);
+        DataAccessLayerHelper.insertProficiencies(cd,
+                cd.getDeckDAO().getHighestDeckID(),
+                dates);
 
         Intent openDD = new Intent(this, DeckDesigner.class);
         openDD.putExtra("DECK_ID", cd.getDeckDAO().getHighestDeckID());
