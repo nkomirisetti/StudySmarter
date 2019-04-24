@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".screens.StudyReview"></activity>
+        <activity
+            android:name=".screens.CalendarView"
+            android:label="@string/title_activity_calendar_view"
+            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".screens.StudyReview" />
         <activity
             android:name=".screens.StudyStagingArea"
             android:label="@string/title_activity_study_staging_area"
