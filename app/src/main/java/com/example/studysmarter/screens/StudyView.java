@@ -85,7 +85,6 @@ public class StudyView extends AppCompatActivity {
             stopTime = System.nanoTime();
 
             long secondsPerCard = (stopTime - startTime) / (cardsList.size() * 1000000000);
-            Log.i("You took ", secondsPerCard + " and you had " + iKnowCount + " cards you knew and " + iDontKnowCount + " cards you didn't know");
             double rawProficiency = (double) iKnowCount / (iKnowCount + iDontKnowCount);
 
             Decks currentDeck = cd.getDeckDAO().findDeckWithID(deckID).get(0);
@@ -105,7 +104,6 @@ public class StudyView extends AppCompatActivity {
             return;
         }
 
-
         EasyFlipView fv = findViewById(R.id.easyFlipView);
         fv.setOnFlipListener(new EasyFlipView.OnFlipAnimationListener() {
             @Override
@@ -120,7 +118,6 @@ public class StudyView extends AppCompatActivity {
         TextView termLabel = findViewById(R.id.card_view_front_name);
         termLabel.setText(cardsList.get(currentCard).term);
         indexLabel.setText("Card " + (currentCard + 1));
-
     }
 
     void iKnowClicked() {

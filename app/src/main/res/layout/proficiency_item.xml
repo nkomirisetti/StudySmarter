@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="7dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/proficiency_deadline_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sample title"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/proficiency_deadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:text="sample subtitle"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/deck_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:text="sample subtitle"
+        android:textSize="12sp" />
+</LinearLayout>

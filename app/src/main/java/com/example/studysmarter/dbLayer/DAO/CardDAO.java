@@ -43,4 +43,7 @@ public interface CardDAO {
 
     @Query("SELECT MAX(cardID) FROM cards WHERE deckID == :deckID")
     int getHighestCardID(int deckID);
+
+    @Query("DELETE FROM cards")
+    void deleteAll();
 }

@@ -9,17 +9,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.example.studysmarter.dbLayer.DAL.DataAccessLayerHelper;
 import com.example.studysmarter.dbLayer.database.CardsDatabase;
 import com.example.studysmarter.dbLayer.tables.Decks;
+import com.example.studysmarter.screens.CalendarScreen;
 import com.example.studysmarter.screens.DeckCreator;
 import com.example.studysmarter.screens.StudyView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         cd = DataAccessLayerHelper.buildDatabaseConnection(this);
+
+//        cd.getProficiencyDAO().deleteAll();
+//        cd.getCardDAO().deleteAll();
+//        cd.getDeckDAO().deleteAllDecks();
+
         initializeToolbar();
         initializeListView();
     }
@@ -51,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 openDeckCreator();
                 return true;
             case R.id.cal_view:
-                // TODO add calendar view screen
+                openCalendarView();
                 return true;
             case R.id.delete_deck:
                 // TODO add delete deck view
@@ -59,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void openCalendarView() {
+        Intent newStudy = new Intent(this, CalendarScreen.class);
+        startActivity(newStudy);
     }
 
     private void openStudyView(int deckID) {

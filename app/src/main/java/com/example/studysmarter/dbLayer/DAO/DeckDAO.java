@@ -44,4 +44,7 @@ public interface DeckDAO {
 
     @Query("SELECT MAX(deckID) FROM decks")
     int getHighestDeckID();
+
+    @Query("DELETE FROM decks")
+    void deleteAllDecks();
 }

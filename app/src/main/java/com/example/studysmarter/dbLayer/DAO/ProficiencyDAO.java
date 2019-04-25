@@ -38,4 +38,7 @@ public interface ProficiencyDAO {
 
     @Query("SELECT * FROM proficiency WHERE stage == :stage ORDER BY deadline DESC")
     List<Proficiency> getByCurrentStage(int stage);
+
+    @Query("DELETE FROM proficiency")
+    void deleteAll();
 }

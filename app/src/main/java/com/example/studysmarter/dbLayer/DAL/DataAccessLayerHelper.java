@@ -53,10 +53,26 @@ public class DataAccessLayerHelper {
             p.deadline = dates[i];
             p.deckID = deckID;
             p.stage = profValues[i];
-            p.stageID = i + 1;
             profs[i] = p;
         }
         cd.getProficiencyDAO().insertProfs(profs);
     }
-}
 
+    public static List<Proficiency> getProficiencies(Context context) {
+        CardsDatabase cd = buildDatabaseConnection(context);
+        return getProficiencies(cd);
+    }
+
+    public static List<Proficiency> getProficiencies(CardsDatabase cd){
+       return cd.getProficiencyDAO().getAllProfs();
+    }
+
+    public static String getDeckName(CardsDatabase cd, int deckID){
+        return cd.getDeckDAO().findDeckWithID(deckID).get(0).name;
+    }
+
+    public static String getDeckName(Context context, int deckID){
+        CardsDatabase cd = buildDatabaseConnection(context);
+        return getDeckName(cd,deckID);
+    }
+}
